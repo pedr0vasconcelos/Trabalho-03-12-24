@@ -1,0 +1,46 @@
+package continentesepaises;
+
+import java.util.List;
+import java.util.ArrayList;
+
+public class Pais {
+    private String codigoISO;
+    private String nome;
+    private long Populacao;
+    private double Dimensao;
+    private List<Pais> paisesFronteira;
+
+    // Construtor
+    public Pais(String codigoISO, String nome, double dimensao) {
+        this.codigoISO = codigoISO;
+        this.nome = nome;
+        this.dimensao = dimensao;
+        this.paisesFronteira = new ArrayList<>();
+    }
+
+    // Getters e Setters
+    // ...
+
+    // Verifica igualdade semântica
+    public boolean equals(Pais outro) {
+        return this.codigoISO.equals(outro.codigoISO);
+    }
+
+    // Verifica se é fronteiriço
+    public boolean isFronteira(Pais outro) {
+        return paisesFronteira.contains(outro);
+    }
+
+    // Calcula densidade populacional
+    public double getDensidadePopulacional() {
+        return populacao / dimensao;
+    }
+
+    // Retorna vizinhos comuns
+    public List<Pais> getVizinhosComuns(Pais outro) {
+        List<Pais> comuns = new ArrayList<>(this.paisesFronteira);
+        comuns.retainAll(outro.paisesFronteira);
+        return comuns;
+    }
+}
+
